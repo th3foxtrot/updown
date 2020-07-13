@@ -8,6 +8,7 @@ __version__ = "0.1.0"
 __license__ = "MIT"
 
 import yfinance
+import time
 
 amd = yfinance.Ticker("AMD")
 
@@ -64,35 +65,40 @@ def main():
     # TODO main loop must be in a while loop
     # TODO receive input from the user for a ticker
     # print(current_price(amd))
+    ticker = None
     intro()
     while True:
-        ticker = ticker_choice()
-        choice = command(ticker)
-        if choice == 'info':
-            # TODO format json
-            print(ticker_info(ticker))
-            repeat()
-            # we're getting fuzzy here. we're stuck
-            intro()
-        elif choice == 'financials':
-            finChoice = input("'financials' or 'quarterly_financials'?")
-            if finChoice == 'financials':
-                print(ticker.financials)
-            elif finChoice == 'quarterly_financials':
-                print(ticker.quarterly_financials)
-            else:
-                print("Please choose one of the options above!")
-        elif choice == 'recommendations':
-            print(ticker.recommendations)
-        elif choice == 'sustainability':
-            print(ticker.sustainability)
-        elif choice == 'options':
-            options(ticker)
-        elif choice == 'quit':
-            print("Goodbye.")
-            break
+        if ticker == None:
+            ticker = ticker_choice()
         else:
-            print("Please choose one of the commands listed above.") 
+            choice = command(ticker)
+            if choice == 'info':
+                # TODO format json
+                print(ticker_info(ticker))
+                repeat()
+                # we're getting fuzzy here. we're stuck
+                intro()
+            elif choice == 'financials':
+                finChoice = input("'financials' or 'quarterly_financials'?")
+                if finChoice == 'financials':
+                    print(ticker.financials)
+                elif finChoice == 'quarterly_financials':
+                    print(ticker.quarterly_financials)
+                else:
+                    print("\nPlease choose one of the options above!\n")
+                    time.sleep(2)
+            elif choice == 'recommendations':
+                print(ticker.recommendations)
+            elif choice == 'sustainability':
+                print(ticker.sustainability)
+            elif choice == 'options':
+                options(ticker)
+            elif choice == 'quit':
+                print("Goodbye.")
+                break
+            else:
+                print("\nPlease choose one of the commands listed above.\n")
+                # time.sleep(2)
 
 
 
