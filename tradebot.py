@@ -16,6 +16,12 @@ from datetime import date
 test_tickers = ['amd', 'tsla', 'tlt']
 today = date.today()
 
+class Portfolio:
+	""" Class for portfolio object. """
+	def __init__(self, balance):
+		self.b = balance
+
+
 def authenticate():
     """ Method checks credentials and logs user in. """
     pass
@@ -25,6 +31,35 @@ def predictions():
 	# 2-3 day price windows are insufficient
 	# 10 and 50 windows work much better
 	pass
+
+def setPortfolio():
+	""" Creates a brand new portfolio to be used by the bot. """
+	balance = 1000
+	pass
+
+def updatePortfolio(action, quantity, cost):
+	""" Updates portfolio with current prices. """
+	# should be in Portfolio class?
+	# calcuate value of every stock owned.
+	# #ofstocks * price
+	if action == 'b':
+		print("Bought ", quantity, "of ", ticker, "at ", cost)
+	elif action == 's':
+		print("Sold ", quantity, "of ", ticker, "at ", cost)
+	# TODO cleanup print statement for accurate testing.
+	# TODO logging of every transaction
+	pass
+
+def buyStock():
+	""" Buys stock and adds it to portfolio. """
+	# getPrice()
+	# getPrice() * quantity purchased
+	# updatePortfolio()
+
+def sellStock():
+	""" Sells stock and removes it from portfolio. """
+	# getPrice()
+	# get
 
 def dailyHigh(ticks):
 	tick_count = 0
