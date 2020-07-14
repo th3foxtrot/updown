@@ -113,6 +113,9 @@ def main():
                 yhistory(ticker)
                 # print(ticker.history())
                 # https://aroussi.com/post/python-yahoo-finance
+            if choice == 'testcase':
+                print(type(ticker.history("3d")))
+                print(ticker.history("3d").at['2020-07-09', 'Close'])
             elif choice == 'quit':
                 print("Goodbye.")
                 break
@@ -121,6 +124,11 @@ def main():
                 # Sleeps before printing when I uncomment the below line...
                 # time.sleep(2)
 
+#############################################
+# Get value at specified row/column pair.
+# ticker.history("3d").at[2020-07-09, Close]
+# result should be 57.26
+#############################################
 
 
 if __name__ == "__main__":
