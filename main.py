@@ -28,7 +28,7 @@ def ticker_choice():
     return yfinance.Ticker(tckrChoice.upper())
 
 def command(ticker):
-    print("Commands: \n'info'\n'finanancials'\n'recommendations'\n'sustainability'\n'options'\n'quit'")
+    print("\nCommands: \n'info'\n'history'\n'recommendations'\n'options'\n'quit'")
     return input("Enter a command: ")
 
 def ticker_info(ticker):
@@ -59,6 +59,14 @@ def options(ticker):
         else:
             print("Please select 'calls' or 'puts' ")
 
+def yhistory(ticker):
+    """Asks user specific commands relating to stock historical data."""
+    hisChoice = input("Would you like 'recent' history or 'specific'? ")
+    if hisChoice == 'recent':
+        print(ticker.history())
+    elif hisChoice == 'specific':
+        date = input("What is the date that you are looking for data on? ")
+        print(ticker.history(date))
 
 def main():
     """ Main entry point of the app """
@@ -78,7 +86,9 @@ def main():
                 repeat()
                 # we're getting fuzzy here. we're stuck
                 intro()
+                # what was going on here?? ^ TODO
             elif choice == 'financials':
+                # RETURNS empty data frame IN ALL TESTED INSTANCES
                 finChoice = input("'financials' or 'quarterly_financials'?")
                 if finChoice == 'financials':
                     print(ticker.financials)
@@ -90,14 +100,25 @@ def main():
             elif choice == 'recommendations':
                 print(ticker.recommendations)
             elif choice == 'sustainability':
-                print(ticker.sustainability)
+                # RETURNS NONE IN ALL TESTED INSTANCES
+                if ticker.sustainability == None:
+                    print("\nSorry, nothing to display here.\n")
+                else:
+                    print(ticker.sustainability)
             elif choice == 'options':
                 options(ticker)
+            if choice == 'history':
+                # TODO ask user for specific time?
+                # refer to link below for yfinance use.
+                yhistory(ticker)
+                # print(ticker.history())
+                # https://aroussi.com/post/python-yahoo-finance
             elif choice == 'quit':
                 print("Goodbye.")
                 break
             else:
                 print("\nPlease choose one of the commands listed above.\n")
+                # Sleeps before printing when I uncomment the below line...
                 # time.sleep(2)
 
 
