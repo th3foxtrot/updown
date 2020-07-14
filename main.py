@@ -128,6 +128,7 @@ def main():
 # Get value at specified row/column pair.
 # ticker.history("3d").at[2020-07-09, Close]
 # result should be 57.26
+# https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.at.html#pandas.DataFrame.at
 #############################################
 
 
